@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -17,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.sda.addressbook.controller.RootViewController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -64,10 +63,10 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TableView layoutX="-13.0" layoutY="47.0" prefHeight="373.0" prefWidth="235.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="personTableView" onMouseClicked="#selectedPerson" layoutX="-13.0" layoutY="47.0" prefHeight="373.0" prefWidth="235.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn prefWidth="124.0" text="Name" />
-                            <TableColumn prefWidth="122.0" text="Lastname" />
+                            <TableColumn fx:id="nameCol" prefWidth="124.0" text="Name" />
+                            <TableColumn fx:id="lastNameCol" prefWidth="122.0" text="Lastname" />
                           </columns>
                         </TableView>
                      </children>
@@ -94,20 +93,20 @@
                               <Label text="Postal Code" GridPane.rowIndex="3" />
                               <Label text="Telephone number" GridPane.rowIndex="4" />
                               <Label text="City" GridPane.rowIndex="5" />
-                              <Label GridPane.columnIndex="1" />
-                              <Label GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label fx:id="name" prefHeight="17.0" prefWidth="129.0" GridPane.columnIndex="1" />
+                              <Label fx:id="lastName" prefHeight="17.0" prefWidth="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="address" prefHeight="17.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="postalCode" prefHeight="17.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="telephoneNumber" prefHeight="17.0" prefWidth="125.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label fx:id="city" prefHeight="17.0" prefWidth="127.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                            </children>
                         </GridPane>
                         <ButtonBar layoutX="-7.0" layoutY="327.0" prefHeight="40.0" prefWidth="393.0">
                           <buttons>
-                            <Button mnemonicParsing="false" text="New person" />
-                              <Button mnemonicParsing="false" text="Edit" />
-                              <Button mnemonicParsing="false" text="Delete" />
-                              <BottomNavigationButton text="Save" />
+                            <Button onMouseClicked="#addNewPerson" fx:id="newPerson" mnemonicParsing="false" text="New person" />
+                              <Button onMouseClicked="#edit" fx:id="edit" mnemonicParsing="false" text="Edit" />
+                              <Button onMouseClicked="#deletePerson" fx:id="delete" mnemonicParsing="false" text="Delete" />
+                              <Button fx:id="save" mnemonicParsing="false" text="Save" />
                           </buttons>
                         </ButtonBar>
                      </children>
