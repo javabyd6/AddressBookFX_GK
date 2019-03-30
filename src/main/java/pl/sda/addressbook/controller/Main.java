@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.sda.addressbook.controller.model.Person;
 
+import java.io.IOException;
+
+
 public class Main extends Application {
 
     private ObservableList <Person> personList = FXCollections.observableArrayList();
@@ -18,11 +21,14 @@ public class Main extends Application {
         launch(args);
     }
 
-    public Main() {
+    public Main() throws IOException {
 
-        personList.add(new Person("Jan", "Kowalski", "ul. Jakastam 12", "85-794", "523437291", "Bydgoszcz"));
-        personList.add(new Person("Bob", "Oklahoma", "ul. Inna 13", "85-666", "523437291", "Toruń"));
-        personList.add(new Person("Tom", "Smith", "ul. JeszczeInsza 13", "85-666", "523437291", "Toruń"));
+//        personList.add(new Person("Jan", "Kowalski", "ul. Jakastam 12", "85-794", "523437291", "Bydgoszcz"));
+//        personList.add(new Person("Bob", "Oklahoma", "ul. Inna 13", "85-666", "523437291", "Toruń"));
+//        personList.add(new Person("Tom", "Smith", "ul. JeszczeInsza 13", "85-666", "523437291", "Toruń"));
+
+    Parser parser = new Parser();
+    parser.readFile(personList);
 
     }
 
@@ -45,11 +51,8 @@ public class Main extends Application {
         rootViewController.setMain(this);
         rootViewController.loadPerson();
 
-//        Parent root = FXMLLoader.load(getClass().getResource("/root.fxml"));
-
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
     }
 
 }

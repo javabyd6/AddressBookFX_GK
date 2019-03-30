@@ -24,13 +24,15 @@ public class EditViewController implements Initializable {
     private TextField newPostalCode;
     @FXML
     private TextField newCity;
-
     @FXML
     private Button newSaveButton;
     @FXML
     private Button newCancelButton;
 
     private Main main;
+
+    private Person selectedPerson;
+
 
     private Main getMain() {
         return main;
@@ -40,19 +42,37 @@ public class EditViewController implements Initializable {
         this.main = main;
     }
 
-    public void saveNewPerson(){
-        Person person = new Person(newName.getText(), newLastName.getText(), newAddress.getText(), newTelephoneNumber.getText(), newPostalCode.getText(),newCity.getText());
+    public void saveNewPerson() {
+        Person person = new Person(newName.getText(), newLastName.getText(), newAddress.getText(), newTelephoneNumber.getText(), newPostalCode.getText(), newCity.getText());
         main.getPersonList().add(person);
         Stage stage = (Stage) newSaveButton.getScene().getWindow();
         stage.close();
     }
-    public void escape(){
+
+    public void escape() {
         Stage stage = (Stage) newCancelButton.getScene().getWindow();
         stage.close();
     }
 
+    public void setSelectedPerson(Person selectedPerson) {
+        this.selectedPerson = selectedPerson;
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    public void initializeForm() {
+        if (selectedPerson != null) {
+            newName.setText(selectedPerson.getName());
+            newLastName.setText(selectedPerson.getLastName());
+            newAddress.setText(selectedPerson.getAddress());
+            newCity.setText(selectedPerson.getCity());
+            newPostalCode.setText(selectedPerson.getPostalCode());
+            newTelephoneNumber.setText(selectedPerson.getTelephoneNumber());
+        }
 
     }
 }

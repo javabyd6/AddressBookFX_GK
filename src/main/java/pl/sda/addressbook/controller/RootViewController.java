@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pl.sda.addressbook.controller.model.Person;
 import java.io.IOException;
@@ -73,7 +72,7 @@ public class RootViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        System.out.println(this.main.getPersonList());
+
     }
 
     public Person selectedPerson() {
@@ -86,13 +85,15 @@ public class RootViewController implements Initializable {
         city.setText(person.getCity());
         System.out.println(person);
         return person;
+
+
     }
 
 
     public void addNewPerson() throws Exception {
         Stage secondStage = new Stage();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/addNew.fxml"));
+        loader.setLocation(getClass().getResource("/add.fxml"));
         loader.load();
 
         Parent root = loader.getRoot();
@@ -109,19 +110,31 @@ public class RootViewController implements Initializable {
     }
 
 
-    public void edit(MouseEvent mouseEvent) throws IOException {
+    public void edit() throws IOException {
         Stage thirdStage = new Stage();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/EditViewController.fxml"));
+        loader.setLocation(getClass().getResource("/edit.fxml"));
         loader.load();
 
         Parent root = loader.getRoot();
         EditViewController editViewController = loader.getController();
         editViewController.setMain(main);
+        editViewController.setSelectedPerson(personTableView.getSelectionModel().getSelectedItem());
+        editViewController.initializeForm();
 
         thirdStage.setScene(new Scene(root));
         thirdStage.show();
 
-
     }
+
+
+
+
+
+
 }
+
+//1. Załadowanie FXML
+//2. Parent
+//3. Nowy obiekt Stage
+//4. Set Scene na Stage
