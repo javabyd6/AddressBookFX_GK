@@ -30,6 +30,7 @@ public class Main extends Application {
     Parser parser = new Parser();
     parser.readFile(personList);
 
+
     }
 
     public ObservableList<Person> getPersonList() {

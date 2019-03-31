@@ -43,6 +43,7 @@ public class EditViewController implements Initializable {
     }
 
     public void saveNewPerson() {
+        main.getPersonList().remove(selectedPerson);
         Person person = new Person(newName.getText(), newLastName.getText(), newAddress.getText(), newTelephoneNumber.getText(), newPostalCode.getText(), newCity.getText());
         main.getPersonList().add(person);
         Stage stage = (Stage) newSaveButton.getScene().getWindow();
